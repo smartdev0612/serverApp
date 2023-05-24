@@ -1,9 +1,11 @@
 const express = require('express')
 
 const app = express()
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 app.use((req, res, next) => {
-  console.log('<h1>Helllooooo</h1>')
+  next()
 })
 
 app.get('/', (req, res) => {
@@ -15,6 +17,7 @@ app.get('/profile', (req, res) => {
 })
 
 app.post('/profile', (req, res) => {
+  console.log(req.body)
   const user = {
     name: 'Sally',
     hobby: 'soccer',
